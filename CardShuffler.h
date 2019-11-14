@@ -38,7 +38,6 @@ public:
 private:
 	// deck of cards
 	std::vector<T> m_deck;
-	std::vector<T> m_DeckCopy;
 	bool m_bIsDeckOdd;
 	size_t m_deckSize;
 
@@ -65,7 +64,6 @@ CardShuffler<T>::CardShuffler()
 	m_bIsDeckOdd = false;
 	m_deckSize = 0;
 	m_deck = std::vector<T>();
-	m_DeckCopy = std::vector<T>();
 	m_FirstHalfIndex = 0;
 	m_SecondHalfIndex = 0;
 	m_MinVectorSize = 0;
@@ -109,8 +107,6 @@ std::vector<T> CardShuffler<T>::GenerateDeck(size_t size)
 	// https://lemire.me/blog/2012/06/20/do-not-waste-time-with-stl-vectors/
 	m_deck = std::vector<T>();
 	m_deck.reserve(size);
-	m_DeckCopy = std::vector<T>();
-	m_DeckCopy.reserve(size);
 	m_deckSize = size;
 	for (unsigned int i = 0; i < size; i++)
 		m_deck.push_back(i);
