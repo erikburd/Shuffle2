@@ -47,10 +47,6 @@ private:
 	size_t m_SecondHalfIndex;
 	size_t m_MinVectorSize;
 
-	// calculate the indeces that will be used for
-	// splitting the deck into halves for shuffling
-	void CalculateDeckIndeces(ShuffleType shuffleType);
-
 	// Mersenne Twister algorithm for uniform random number generator
 	std::mt19937_64 m_urng;
 
@@ -96,18 +92,6 @@ bool CardShuffler<T>::IsDeckRestored()
 	// this assumes we're only using numbers instead of
 	// a "real deck" with suits and A, J, Q, K cards
 	return std::is_sorted(m_deck.begin(), m_deck.end());
-}
-
-template<class T>
-void CardShuffler<T>::CalculateDeckIndeces(ShuffleType shuffleType)
-{
-	if (m_bIsDeckOdd || shuffleType == ShuffleType::INSHUFFLE)
-		m_FirstHalfIndex = (m_deckSize / 2);
-	else
-		m_FirstHalfIndex = ((m_deckSize + 1) / 2);
-
-	m_SecondHalfIndex = (m_deckSize - m_FirstHalfIndex);
-	m_MinVectorSize = min(m_FirstHalfIndex, m_SecondHalfIndex);
 }
 
 template<class T>
